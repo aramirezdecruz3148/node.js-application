@@ -1,7 +1,8 @@
 const querystring = require('querystring'),
-    fs = require('fs');
+    fs = require('fs'),
+    formidable = require('formidable');
 
-function start(response, postData) {
+function start(response) {
     console.log('Request handler "start" was called!');
 
     const body = '<html>'+
@@ -22,7 +23,7 @@ function start(response, postData) {
         response.end();
 }
 
-function upload(response, postData) {
+function upload(response, request) {
     console.log('Request handler "upload" was called!');
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.write('You have sent the text: '+ 
