@@ -25,9 +25,16 @@ function start(response) {
 
 function upload(response, request) {
     console.log('Request handler "upload" was called!');
+
+    const form = new formidable.IncomingForm();
+    console.log('about to parse');
+    form.parse(request, function(error, fields, files) {
+        console.log('parsing done');
+    });
+
     response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.write('You have sent the text: '+ 
-    querystring.parse(postData).text);
+    response.write('received image: <br/>');
+    response.write('<img src="/show" />');
     response.end();
 }
 
